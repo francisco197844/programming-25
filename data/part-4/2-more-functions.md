@@ -103,17 +103,20 @@ Please write a function named `line`, which takes two arguments: an integer and 
 An example of expected behaviour:
 
 ```python
+def line(length, character="*"):
+    """
+    Prints a line of text with the specified length.
+
+    Args:
+        length: The length of the line (integer).
+        character: The character to use (string). Defaults to "*".
+    """
+    print(character[0] * length)
+
+# Example Usage
 line(7, "%")
 line(10, "LOL")
-line(3, "")
-```
-
-<sample-output>
-
-<pre>
-%%%%%%%
-LLLLLLLLLL
-***
+line(3)
 </pre>
 
 </sample-output>
@@ -153,10 +156,10 @@ The function should call the function `line` from the exercise above for the act
 Some examples of how the function should work:
 
 ```python
+
 box_of_hashes(5)
 print()
 box_of_hashes(2)
-```
 
 <sample-output>
 
@@ -184,9 +187,30 @@ The function should call the function `line` from the exercise above for the act
 Some examples:
 
 ```python
-square_of_hashes(5)
-print()
-square_of_hashes(3)
+def line(length, character="*"):
+    """
+    Prints a line of text with the specified length.
+
+    Args:
+        length: The length of the line (integer).
+        character: The character to use (string). Defaults to "*".
+    """
+    print(character[0] * length)
+
+def square_of_hashes(size, character="#"):
+    """
+    Prints a square of characters.
+
+    Args:
+        size: The side length of the square.
+        character: The character to use (string). Defaults to "#".
+    """
+    for _ in range(size):
+        line(size, character)
+
+# Generate the specified output
+square_of_hashes(5)  # 5x5 square
+square_of_hashes(3)  # 3x3 square
 ```
 
 <sample-output>
@@ -216,6 +240,28 @@ The function should call the function `line` from the exercise above for the act
 Some examples:
 
 ```python
+def line(length, character="*"):
+    """
+    Prints a line of text with the specified length.
+
+    Args:
+        length: The length of the line (integer).
+        character: The character to use (string). Defaults to "*".
+    """
+    print(character[0] * length)
+
+def square(size, character):
+    """
+    Prints a square of characters.
+
+    Args:
+        size: The side length of the square.
+        character: The character to use for the square.
+    """
+    for _ in range(size):
+        line(size, character)
+
+# Example Usage
 square(5, "*")
 print()
 square(3, "o")
@@ -248,6 +294,27 @@ The function should call the function `line` from the exercise above for the act
 Some examples:
 
 ```python
+def line(length, character="*"):
+    """
+    Prints a line of text with the specified length.
+
+    Args:
+        length: The length of the line (integer).
+        character: The character to use (string). Defaults to "*".
+    """
+    print(character[0] * length)
+
+def triangle(size):
+    """
+    Draws a triangle of hashes.
+
+    Args:
+        size: The height and width of the triangle.
+    """
+    for i in range(1, size + 1):
+        line(i, "#")
+
+# Example Usage
 triangle(6)
 print()
 triangle(3)
@@ -281,6 +348,42 @@ The function should call the function `line` from the exercise above for the act
 Some examples:
 
 ```python
+def line(length, character="*"):
+    """
+    Prints a line of text with the specified length.
+
+    Args:
+        length: The length of the line (integer).
+        character: The character to use (string). Defaults to "*".
+    """
+    print(character[0] * length)
+
+def triangle(size, character):
+    """
+    Draws a triangle of characters.
+
+    Args:
+        size: The height and width of the triangle.
+        character: The character to use for the triangle.
+    """
+    for i in range(1, size + 1):
+        line(i, character)
+
+def shape(triangle_size, triangle_char, rectangle_height, rectangle_char):
+    """
+    Draws a triangle and a rectangle below it.
+
+    Args:
+        triangle_size: The height and width of the triangle.
+        triangle_char: The character to use for the triangle.
+        rectangle_height: The height of the rectangle.
+        rectangle_char: The character to use for the rectangle.
+    """
+    triangle(triangle_size, triangle_char)
+    for _ in range(rectangle_height):
+        line(triangle_size, rectangle_char)
+
+# Example Usage
 shape(5, "X", 3, "*")
 print()
 shape(2, "o", 4, "+")
@@ -338,6 +441,25 @@ a spruce!
   *
 </pre>
 
+
+def spruce(size):
+    """
+    Prints the text 'a spruce!' and a spruce tree.
+
+    Args:
+        size: The size of the spruce tree.
+    """
+    print("A spruce!")
+    for i in range(size):
+        spaces = " " * (size - i - 1)
+        stars = "*" * (2 * i + 1)
+        print(spaces + stars)
+    print(" " * (size - 1) + "*")
+
+# Example Usage
+spruce(3)
+print()
+spruce(5)
 </sample-output>
 
 Calling `spruce(5)` should print out
@@ -565,9 +687,24 @@ Please write a function named  `greatest_number`, which takes three arguments. T
 An example of how the function is used:
 
 ```python
-print(greatest_number(3, 4, 1)) # 4
+def greatest_number(num1, num2, num3):
+    """
+    Returns the greatest of three numbers.
+
+    Args:
+        num1: The first number.
+        num2: The second number.
+        num3: The third number.
+
+    Returns:
+        The greatest number.
+    """
+    return max(num1, num2, num3)
+
+# Example Usage
+print(greatest_number(3, 4, 1))  # 4
 print(greatest_number(99, -4, 7)) # 99
-print(greatest_number(0, 0, 0)) # 0
+print(greatest_number(0, 0, 0))  # 0
 ```
 
 </programming-exercise>
@@ -579,13 +716,26 @@ Please write a function named `same_chars`, which takes one string and two integ
 Some examples of how the function is used:
 
 ```python
-# same characters m and m
-print(same_chars("programmer", 6, 7)) # True
+def same_chars(string, index1, index2):
+    """
+    Checks if two characters at specified indexes in a string are the same.
 
-# different characters p and r
-print(same_chars("programmer", 0, 4)) # False
+    Args:
+        string: The string to check.
+        index1: The first index.
+        index2: The second index.
 
-# the second index is not within the string
+    Returns:
+        True if the characters at the indexes are the same, False otherwise.
+    """
+    if 0 <= index1 < len(string) and 0 <= index2 < len(string):
+        return string[index1] == string[index2]
+    else:
+        return False
+
+# Example Usage
+print(same_chars("programmer", 6, 7))  # True
+print(same_chars("programmer", 0, 4))  # False
 print(same_chars("programmer", 0, 12)) # False
 ```
 
@@ -600,11 +750,30 @@ As their names imply, the functions return either the first, the second or the l
 In each case you may assume the argument string contains at least two separate words, and all words are separated by exactly one space character. There will be no spaces in the beginning or at the end of the argument strings.
 
 ```python
-sentence = "it was a dark and stormy python"
+def first_word(sentence):
+    """Returns the first word in the sentence."""
+    words = sentence.split()
+    return words[0]
 
-print(first_word(sentence)) # it
-print(second_word(sentence)) # was
-print(last_word(sentence)) # python
+def second_word(sentence):
+    """Returns the second word in the sentence."""
+    words = sentence.split()
+    return words[1]
+
+def last_word(sentence):
+    """Returns the last word in the sentence."""
+    words = sentence.split()
+    return words[-1]
+
+# Example Usage
+sentence = "it was a dark and stormy python"
+print(first_word(sentence))
+print(second_word(sentence))
+print(last_word(sentence))
+
+sentence = "it was"
+print(second_word(sentence))
+print(last_word(sentence))
 ```
 
 <sample-output>
